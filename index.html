@@ -1,20 +1,428 @@
 <!doctype html>
-<html lang="en">
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Emine Arac | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Space+Grotesk:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f7f1e8;
+        --bg-strong: #efe5d7;
+        --ink: #1f1b16;
+        --muted: #5c5247;
+        --accent: #d9822b;
+        --accent-2: #2f5d8f;
+        --card: #fff7ec;
+        --border: #e2d3c0;
+        --shadow: 0 24px 60px rgba(31, 27, 22, 0.15);
+      }
 
-<head>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Jersey+15&family=Knewave&display=swap" rel="stylesheet">
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vite + React</title>
-  <script type="module" crossorigin src="/assets/index-Dz9vJw6L.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-CchByz1V.css">
-</head>
+      * {
+        box-sizing: border-box;
+      }
 
-<body>
-  <div id="root"></div>
-</body>
+      body {
+        margin: 0;
+        font-family: "Space Grotesk", sans-serif;
+        color: var(--ink);
+        background: radial-gradient(circle at top, #fffaf2 0%, var(--bg) 48%, #f3e6d6 100%);
+      }
 
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .page {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        gap: 64px;
+        padding-bottom: 80px;
+      }
+
+      .hero {
+        position: relative;
+        padding: 80px 6vw 40px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 40px;
+        align-items: center;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: -20% -10% auto -10%;
+        height: 60%;
+        background: linear-gradient(120deg, rgba(217, 130, 43, 0.22), rgba(47, 93, 143, 0.2));
+        filter: blur(20px);
+        z-index: 0;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        right: 8%;
+        top: 18%;
+        width: 180px;
+        height: 180px;
+        background: var(--accent);
+        border-radius: 40% 60% 55% 45%;
+        opacity: 0.12;
+        z-index: 0;
+      }
+
+      .hero-content,
+      .hero-visual {
+        position: relative;
+        z-index: 1;
+      }
+
+      .eyebrow {
+        font-size: 0.95rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 12px;
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: "Fraunces", serif;
+        margin: 0;
+      }
+
+      h1 {
+        font-size: clamp(2.4rem, 4vw, 4rem);
+        line-height: 1.05;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+        color: var(--muted);
+        line-height: 1.6;
+        margin: 18px 0 28px;
+      }
+
+      .cta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .btn {
+        padding: 12px 20px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 600;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .btn.primary {
+        background: var(--ink);
+        color: #fffaf2;
+        border-color: transparent;
+        box-shadow: var(--shadow);
+      }
+
+      .btn.secondary {
+        background: transparent;
+        color: var(--ink);
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 30px rgba(31, 27, 22, 0.18);
+      }
+
+      .hero-visual {
+        background: url("background.jpg") center/cover no-repeat;
+        border-radius: 28px;
+        padding: 30px;
+        box-shadow: var(--shadow);
+        position: relative;
+      }
+
+      .hero-card {
+        background: rgba(255, 247, 236, 0.92);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 24px;
+        backdrop-filter: blur(4px);
+        display: grid;
+        gap: 16px;
+      }
+
+      .tag-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .tag {
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-size: 0.85rem;
+        background: #f2dfc7;
+        color: var(--ink);
+      }
+
+      .section {
+        padding: 0 6vw;
+        display: grid;
+        gap: 28px;
+      }
+
+      .section-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      .grid {
+        display: grid;
+        gap: 20px;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      }
+
+      .card {
+        background: var(--card);
+        border-radius: 20px;
+        padding: 22px;
+        border: 1px solid var(--border);
+        box-shadow: 0 12px 30px rgba(31, 27, 22, 0.08);
+        min-height: 200px;
+        display: grid;
+        gap: 12px;
+      }
+
+      .card h3 {
+        font-size: 1.4rem;
+      }
+
+      .card p {
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      .project-thumb {
+        border-radius: 16px;
+        border: 1px solid var(--border);
+        overflow: hidden;
+      }
+
+      .project-thumb img {
+        height: 160px;
+        width: 100%;
+        object-fit: cover;
+      }
+
+      .footer {
+        padding: 0 6vw 40px;
+        display: grid;
+        gap: 12px;
+        color: var(--muted);
+      }
+
+      .stagger > * {
+        opacity: 0;
+        transform: translateY(18px);
+        animation: fadeUp 0.8s ease forwards;
+      }
+
+      .stagger > *:nth-child(2) {
+        animation-delay: 0.1s;
+      }
+
+      .stagger > *:nth-child(3) {
+        animation-delay: 0.2s;
+      }
+
+      .stagger > *:nth-child(4) {
+        animation-delay: 0.3s;
+      }
+
+      .stagger > *:nth-child(5) {
+        animation-delay: 0.4s;
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(18px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 720px) {
+        .hero {
+          padding-top: 64px;
+        }
+
+        .hero-visual {
+          padding: 22px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <section class="hero">
+        <div class="hero-content stagger">
+          <div class="eyebrow">PORTFOLIO</div>
+          <h1>Merhaba, ben Emine. Dijital deneyimleri sade ve etkileyici hale getiriyorum.</h1>
+          <p>
+            Tasarım odaklı yaklaşımım ile kullanıcı deneyimini iyileştiren, estetik ve işlevsel
+            arayüzler oluşturuyorum. Bu sayfa, projelerimi ve yetkinliklerimi özetliyor.
+          </p>
+          <div class="cta-row">
+            <a class="btn primary" href="CV GUNCEL.pdf" target="_blank" rel="noopener">
+              CV'yi Gör
+            </a>
+            <a class="btn secondary" href="#projeler">Projeler</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-card stagger">
+            <img src="welcome.png" alt="Merhaba görseli" />
+            <div>
+              <h2>Odak Alanlarım</h2>
+              <p>
+                UI/UX, etkileşim tasarımı, marka tutarlılığı ve kullanıcı araştırması.
+              </p>
+            </div>
+            <div class="tag-list">
+              <span class="tag">UI/UX</span>
+              <span class="tag">Web</span>
+              <span class="tag">Prototip</span>
+              <span class="tag">Figma</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="hakkimda">
+        <div class="section-header">
+          <h2>Hakkımda</h2>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <h3>Yaklaşımım</h3>
+            <p>
+              Kullanıcıyı merkeze alan, ölçülebilir hedeflerle tasarlanan deneyimler oluştururum.
+              Araştırma, ideasyon ve prototipleme süreçlerinde pratik çözümler üretirim.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Odak Noktalarım</h3>
+            <p>
+              Temiz tipografi, sezgisel gezinme ve markayı güçlendiren mikro etkileşimler.
+              Tasarımlarımı modern, erişilebilir ve sürdürülebilir kılarım.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Araçlar</h3>
+            <p>
+              Figma, Adobe XD, Illustrator, HTML/CSS ve temel front-end araçları.
+            </p>
+            <div class="tag-list">
+              <span class="tag">Figma</span>
+              <span class="tag">Adobe XD</span>
+              <span class="tag">HTML/CSS</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="projeler">
+        <div class="section-header">
+          <h2>Seçili Projeler</h2>
+          <a class="btn secondary" href="CV GUNCEL.png" target="_blank" rel="noopener">
+            CV Özet
+          </a>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <div class="project-thumb">
+              <img src="file.png" alt="Proje 1 önizleme" />
+            </div>
+            <h3>Marka Kimliği</h3>
+            <p>
+              Renk paleti, tipografi ve görsel dil oluşturularak tutarlı bir marka deneyimi sağlandı.
+            </p>
+          </article>
+          <article class="card">
+            <div class="project-thumb">
+              <img src="el.png" alt="Proje 2 önizleme" />
+            </div>
+            <h3>Ürün Arayüzü</h3>
+            <p>
+              Kullanıcı akışlarını sadeleştiren ve dönüşümü artıran bir dashboard tasarlandı.
+            </p>
+          </article>
+          <article class="card">
+            <div class="project-thumb">
+              <img src="background.jpg" alt="Proje 3 önizleme" />
+            </div>
+            <h3>Portfolyo Deneyi</h3>
+            <p>
+              Kişisel kimliği öne çıkaran, hareketli ve sıcak bir portfolyo sayfası kurgulandı.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="iletisim">
+        <div class="section-header">
+          <h2>İletişim</h2>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <h3>Birlikte Çalışalım</h3>
+            <p>
+              Yeni projeler, freelance işler ya da işbirlikleri için bana ulaşabilirsiniz.
+            </p>
+            <div class="cta-row">
+              <a class="btn primary" href="mailto:hello@example.com">Email</a>
+              <a class="btn secondary" href="#">LinkedIn</a>
+            </div>
+          </article>
+          <article class="card">
+            <h3>Hızlı Bilgi</h3>
+            <p>
+              İstanbul, Türkiye · Remote projelere açığım · Türkçe/İngilizce iletişim
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <strong>Emine Arac</strong>
+        <span>2024 • Tasarım & Deneyim Odaklı Portfolyo</span>
+      </footer>
+    </div>
+  </body>
 </html>
